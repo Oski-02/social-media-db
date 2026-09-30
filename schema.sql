@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict tvaMHeafD4fAomzB6W5aQkEa3tb5OIdgb99J64PCadLDqzBZUjzSKAsKteENcTt
+\restrict Nd4WZazHa5a7Bn8NFi2gmJuZFFAKS8iR465rbPtlx2ekMX4nymlDG1xKoauHADG
 
 -- Dumped from database version 16.14 (Homebrew)
 -- Dumped by pg_dump version 16.14 (Homebrew)
@@ -139,7 +139,8 @@ CREATE TABLE public.posts (
     id integer NOT NULL,
     user_id integer NOT NULL,
     content character varying(2000) NOT NULL,
-    created_at timestamp without time zone DEFAULT now()
+    created_at timestamp without time zone DEFAULT now(),
+    image_url character varying(255)
 );
 
 
@@ -175,7 +176,8 @@ CREATE TABLE public.users (
     id integer NOT NULL,
     username character varying(50) NOT NULL,
     email character varying(70) NOT NULL,
-    created_at timestamp without time zone DEFAULT now()
+    created_at timestamp without time zone DEFAULT now(),
+    password_hash character(60)
 );
 
 
@@ -370,5 +372,5 @@ ALTER TABLE ONLY public.posts
 -- PostgreSQL database dump complete
 --
 
-\unrestrict tvaMHeafD4fAomzB6W5aQkEa3tb5OIdgb99J64PCadLDqzBZUjzSKAsKteENcTt
+\unrestrict Nd4WZazHa5a7Bn8NFi2gmJuZFFAKS8iR465rbPtlx2ekMX4nymlDG1xKoauHADG
 

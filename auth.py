@@ -26,13 +26,21 @@ def check_password(password, hashed_password):
 def register_user(username, email, password):
     hashed = hash_password(password)
     query = "INSERT INTO users (username, email, password_hash) VALUES (%s, %s, %s)"
-    cursor.execute(query, (username, email, hashed))
-    conn.commit()
+    try:
+        cursor.execute(query, (username, email, hashed))
+        conn.commit()
+        return True
+    except psycopg2.errors.UniqueViolation:
+        conn.rollback()
+        return False
+
 def login_user(username, password):
-	query = "SELECT password_hash FROM users WHERE username = %s"
-	cursor.execute(query, (username,))
-	result = cursor.fetchone()
-	if result is None:
-		return False
-	stored_hash = result[0]
-	return check_password(password, stored_hash)
+    query = "SELECT id, password_hash FROM users WHERE username = %s"
+    cursor.execute(query, (username,))
+    result = cursor.fetchone()
+    if result is None:
+        return None
+    user_id, stored_hash = result
+    if check_password(password, stored_hash):
+        return user_id
+    return None
