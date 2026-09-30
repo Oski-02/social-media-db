@@ -85,10 +85,12 @@ pip install psycopg2-binary bcrypt streamlit python-dotenv
 4. Create a `.env` file in the project root (copy `.env.example` and fill in your own values):
 
 
+```
 DB_HOST=localhost
 DB_USER=your_username
 DB_PASSWORD=your_password
 DB_NAME=social_app
+```
 
 5. Run the app:
 
